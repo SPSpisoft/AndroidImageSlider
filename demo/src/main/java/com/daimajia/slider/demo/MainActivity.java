@@ -1,9 +1,10 @@
 package com.daimajia.slider.demo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,7 +25,7 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import java.util.HashMap;
 
 
-public class MainActivity extends ActionBarActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
+public class MainActivity extends Activity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
 
     private SliderLayout mDemoSlider;
 
@@ -73,7 +74,7 @@ public class MainActivity extends ActionBarActivity implements BaseSliderView.On
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mDemoSlider.setPresetTransformer(((TextView) view).getText().toString());
-                Toast.makeText(MainActivity.this, ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, ">>>" +((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -89,6 +90,7 @@ public class MainActivity extends ActionBarActivity implements BaseSliderView.On
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
+        mDemoSlider.startAutoCycle();
         Toast.makeText(this,slider.getBundle().get("extra") + "",Toast.LENGTH_SHORT).show();
     }
 
@@ -106,7 +108,7 @@ public class MainActivity extends ActionBarActivity implements BaseSliderView.On
                 mDemoSlider.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator));
                 break;
             case R.id.action_custom_child_animation:
-                mDemoSlider.setCustomAnimation(new ChildAnimationExample());
+                    mDemoSlider.setCustomAnimation(new ChildAnimationExample());
                 break;
             case R.id.action_restore_default:
                 mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);

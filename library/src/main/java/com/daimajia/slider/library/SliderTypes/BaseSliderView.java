@@ -40,6 +40,7 @@ public abstract class BaseSliderView {
     private int mRes;
 
     protected OnSliderClickListener mOnSliderClickListener;
+    protected OnSliderLongClickListener mOnSliderLongClickListener;
 
     private boolean mErrorDisappear;
 
@@ -183,6 +184,11 @@ public abstract class BaseSliderView {
         return this;
     }
 
+    public BaseSliderView setOnSliderLongClickListener(OnSliderLongClickListener l){
+        mOnSliderLongClickListener = l;
+        return this;
+    }
+
     /**
      * When you want to implement your own slider view, please call this method in the end in `getView()` method
      * @param v the whole view
@@ -197,6 +203,17 @@ public abstract class BaseSliderView {
             if(mOnSliderClickListener != null){
                 mOnSliderClickListener.onSliderClick(me);
             }
+            }
+        });
+
+        v.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(mOnSliderLongClickListener != null){
+                    mOnSliderLongClickListener.onSliderLongClick(me);
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -291,6 +308,10 @@ public abstract class BaseSliderView {
 
     public interface OnSliderClickListener {
         public void onSliderClick(BaseSliderView slider);
+    }
+
+    public interface OnSliderLongClickListener {
+        public void onSliderLongClick(BaseSliderView slider);
     }
 
     /**
