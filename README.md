@@ -1,11 +1,11 @@
-# Forked & Costomized >>
+# Forked & Customized >>
 
-  allprojects {
-   repositories {
-    ...
-    maven { url 'https://jitpack.io' }
-   }
-  }
+	  allprojects {
+	   repositories {
+	    ...
+	    maven { url 'https://jitpack.io' }
+	   }
+	  }
   
   	dependencies {
 	        implementation 'com.github.SPSpisoft:AndroidImageSlider:2.0.0'
